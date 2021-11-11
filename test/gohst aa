@@ -1,0 +1,19 @@
+local switch = Menu.Switch("Flicker", "Enable", false, "")
+local sliderint = Menu.SliderInt("Flicker", "Delta", 90, 35, 120, "")
+
+sliderint:SetVisible(switch:Get());
+switch:RegisterCallback(function() sliderint:SetVisible(switch:Get()) end)
+
+local a = 0.0;
+local b = true;
+local on_prediction = function()
+    if not switch:Get() or not EntityList.GetLocalPlayer() or EntityList.GetLocalPlayer():GetProp('m_vecVelocity'):Length2D() > 5 or bit.band(EntityList.GetLocalPlayer():GetProp("m_fFlags"), 1) == 0 then return end
+
+    if GlobalVars.realtime - a >= 0.22 + (b and 0.01 or -0.01) then
+        AntiAim.OverrideYawOffset(sliderint:Get() * (AntiAim.GetInverterState() and -1 or 1));
+        a = GlobalVars.realtime;
+        b = not b;
+    end
+end
+
+Cheat.RegisterCallback("prediction", on_prediction);
