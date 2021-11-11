@@ -1,0 +1,16 @@
+local fakeopen_weapon = Menu.MultiCombo("weapon", "Menu Selection", {"ak47", "m4a4", "awp","sg553", "aug","ssg08"}, 0, "weapon")
+local fakeopen_Knife = Menu.MultiCombo("Knife", "Menu Selection", {"hudie", "m9", "zhuazi","anying", "duan"}, 0, "Knife")
+local fakeopen_Gloves = Menu.MultiCombo("Gloves", "Menu Selection", {"1", "2", "3","4", "5"}, 0, "Gloves")
+
+local button = Menu.Button("weapon", "ended", "Tooltip",function()
+    print(fakeopen_weapon:Get())
+
+end)
+
+local button = Menu.Button("Gloves", "ended", "Tooltip",function()
+    print(fakeopen_Gloves:Get())
+end)
+
+local button = Menu.Button("Knife", "ended", "Tooltip",function()
+    print(fakeopen_Knife:Get())
+end)
